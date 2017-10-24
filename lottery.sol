@@ -267,7 +267,7 @@ contract MoneyhackLotteryToken is MyAdvancedToken {
     if (balanceOf[msg.sender] < ticketPrice) return false;
     if ( tickets[ticketNum] != 0) return false;
     balanceOf[msg.sender] -= ticketPrice;
-    JackPot += toJackPtofromEveryTicket;
+    JackPot += toJackPotfromEveryTicket;
     tickets[ticketNum] = msg.sender;
     return true;
   }
@@ -280,9 +280,11 @@ contract MoneyhackLotteryToken is MyAdvancedToken {
     }
 
     uint i1 = lastWinNumber - (lastWinNumber%10);
-    for (uint i = i1; i < i1 + 10; i++)
-      balanceOf[tickets[i]] += ticketPrice * xPrize;
-
+    for (uint i = i1; i < i1 + 10; i++) {
+      if (tickets[i] != 0 && lastWinNumber != i) {
+        balanceOf[tickets[i]] += ticketPrice * xPrize;   
+      }
+    }
     clearTickets();
   }
 
