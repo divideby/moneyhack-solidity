@@ -23,6 +23,6 @@ Linux
 ```
 mist --rpc http://localhost:8545 --swarmurl "null"
 ```
-## IDE для Remix
+## IDE для Solidity
 
 https://remix.ethereum.org/
